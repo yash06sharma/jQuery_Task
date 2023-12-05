@@ -12,6 +12,14 @@
         <div class="row">
             <h6>Add User In List</h6>
         </div>
+
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" value="">
+            </div>
+          </div>
+
         <div class="mb-3 row">
             <label for="inputname" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-4">
@@ -26,11 +34,23 @@
           <div class="row mt-5">
             <div class="col-sm-12">
                 <p>User List</p>
-                <ul id="user">
+                <!-- <ul id="user">
                     <li>1st</li>
 
-                </ul>
+                </ul> -->
 
+                <table class="table" id="tb">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                      </tr>
+                    </thead>
+                    <tbody  id="user">
+
+                    </tbody>
+                  </table>
             </div>
           </div>
 
@@ -42,12 +62,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+    var id = 1;
+    var ary = [];
   $("#inputbtn").click(function(){
    var name = $("#name").val();
-    $('#user').append('<li>' + name + '</lio>'); 
+   var email = $("#email").val();
+  
+   $('#user').append('<tr> <td>' + id + '</td><td>' + name + '</td><td class="emal">' + email + '</td> </tr>'); 
+        id = id+1;   
+
+
+        var eml = $(".emal").text();
+              ary.push({ Email: eml });
+              console.log(ary);
+        
 
   });
 
+       
 
 });
 </script>
