@@ -2,6 +2,13 @@
 <html>
 <head>
     <title>exp1</title>
+  <style>
+
+    .inner,.error{
+      color: red;
+}
+  </style>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
  
 </head>
@@ -12,23 +19,31 @@
         <div class="row">
             <h6>Add User In List</h6>
         </div>
+      <form action="" id="form">
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="u_email" id="u_email" value="">
+                </div>
+              </div>
 
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="email" value="">
-            </div>
-          </div>
+            <div class="mb-3 row">
+                <label for="inputname" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="name" id="name">
+                  <div class="inner">
+                    <p> Data already exist, Please try with different email !</p>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" id="inputbtn" class="btn btn-primary">Add User</button>
+                </div>
+              </div>
 
-        <div class="mb-3 row">
-            <label for="inputname" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="name">
-            </div>
-            <div class="col-sm-2">
-                <button type="button" id="inputbtn" class="btn btn-primary">Add User</button>
-            </div>
-          </div>
+        </form>
+
+
+
 
 
           <div class="row mt-5">
@@ -56,33 +71,54 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 <script>
 $(document).ready(function(){
-    var id = 1;
-    var ary = [];
+  var id = 1;
+      var ary = [];
 
-  $("#inputbtn").click(function(){
-   var name = $("#name").val();
-   var email = $("#email").val();
+      $('.inner').hide();
 
+  $("#form").validate({
+    rules: {
+      name: "required",
+      u_email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      name: "Please enter your name",
+      // u_email: "Please enter a valid email address"
+      u_email: {
+        required: "Please enter your email",
+        email: "Please enter a valid email address"
+      },
 
-  if(jQuery.inArray(email, ary) != -1) {
-    alert("is in array");
-} else {
-  $('#user').append('<tr> <td>' + id + '</td><td>' + name + '</td><td class="emal">' + email + '</td> </tr>'); 
-        id = id+1;  
-} 
+    },
+    submitHandler: function(form) {
+      mydata();
+    }
+  });
+  function mydata(){
+      var name = $("#name").val();
+      var email = $("#u_email").val();
+    
+      if(jQuery.inArray(email, ary) != -1) {
+        $('.inner').show();
+      } else {
+        $('.inner').hide();
+      $('#user').append('<tr> <td>' + id + '</td><td>' + name + '</td><td class="emal">' + email + '</td> </tr>'); 
+    id = id+1;  
+      } 
+    var eml  
+      $(".emal").each(function() {
+        eml = $(this).text();
+      });
+      ary.push(eml);
 
-        var eml  
-        document.querySelectorAll('.emal').forEach((item, index) => {
-           eml = item.innerText;
-          })
-          ary.push(eml);
-          
-        });
-
-
-       
+}
 
 });
 </script>
@@ -91,3 +127,5 @@ $(document).ready(function(){
 </html>
 
 
+
+   
