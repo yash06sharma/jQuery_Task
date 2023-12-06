@@ -34,10 +34,6 @@
           <div class="row mt-5">
             <div class="col-sm-12">
                 <p>User List</p>
-                <!-- <ul id="user">
-                    <li>1st</li>
-
-                </ul> -->
 
                 <table class="table" id="tb">
                     <thead>
@@ -70,15 +66,6 @@ $(document).ready(function(){
    var email = $("#email").val();
 
 
-  
-
-  // for(var i = 0; i < ary.length; i++){
-  //   // console.log(ary[i]['Email']);
-  //   if(email == ary[i]['Email']){
-  //   }else{
-  //   }
-  // }
-
   if(jQuery.inArray(email, ary) != -1) {
     alert("is in array");
 } else {
@@ -86,15 +73,10 @@ $(document).ready(function(){
         id = id+1;  
 } 
 
-
-
-  //  $('#user').append('<tr> <td>' + id + '</td><td>' + name + '</td><td class="emal">' + email + '</td> </tr>'); 
-  //       id = id+1;  
         var eml  
         document.querySelectorAll('.emal').forEach((item, index) => {
            eml = item.innerText;
           })
-          // ary.push({Email : eml});
           ary.push(eml);
           
         });
