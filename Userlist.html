@@ -32,7 +32,6 @@
                 <div class="col-sm-4">
                   <input type="text" class="form-control" name="name" id="name">
                   <div class="inner">
-                    <p> Data already exist, Please try with different email !</p>
                   </div>
                 </div>
                 <div class="col-sm-2">
@@ -78,8 +77,6 @@ $(document).ready(function(){
   var id = 1;
       var ary = [];
 
-      $('.inner').hide();
-
   $("#form").validate({
     rules: {
       name: "required",
@@ -90,7 +87,6 @@ $(document).ready(function(){
     },
     messages: {
       name: "Please enter your name",
-      // u_email: "Please enter a valid email address"
       u_email: {
         required: "Please enter your email",
         email: "Please enter a valid email address"
@@ -106,6 +102,8 @@ $(document).ready(function(){
       var email = $("#u_email").val();
     
       if(jQuery.inArray(email, ary) != -1) {
+
+        $('.inner').text('Data already exist, Please try with different email !');
         $('.inner').show();
       } else {
         $('.inner').hide();
