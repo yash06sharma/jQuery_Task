@@ -131,7 +131,7 @@ $(document).ready(function(){
       html += `<td>${user.id}</td>`;
       html += `<td>${user.name}</td>`;
       html += `<td class='email'>${user.email}</td>`;
-      html += `<td><button class="deleteButton" data="${index}">Delete</button></td>`;
+      html += `<td><button class="deleteButton" deleteId="${index}">Delete</button></td>`;
       $('.user').append(html);
        });
        
@@ -155,8 +155,8 @@ $(document).ready(function(){
 
   $(".user").on("click", ".deleteButton", function() {
           
-          var indexdata = $( this ).attr( "data" );
-                 users.splice(indexdata);
+          var userIndex = $( this ).attr( "deleteId" );
+                 users.splice(userIndex);
                  renderUserList();
       
           });
@@ -171,7 +171,6 @@ $(document).ready(function(){
 
 </body>
 </html>
-
 
 
 
