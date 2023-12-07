@@ -42,11 +42,6 @@
               </div>
 
         </form>
-
-
-
-
-
           <div class="row mt-5">
             <div class="col-sm-12">
                 <p>User List</p>
@@ -55,11 +50,14 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
-                    <tbody  id="user">
+                    <tbody class="user">
+                      <!-- <tr  class="user"></tr> -->
 
                     </tbody>
                   </table>
@@ -76,7 +74,8 @@
 <script>
 $(document).ready(function(){
   var users = [];
-  var errors = [];
+  // var errors = [];
+
 
   // renderUserList();
   $('#form').submit(function (event) {
@@ -120,19 +119,25 @@ $(document).ready(function(){
 
   }
 
-
-
   function renderUserList()
   {
-    console.log(users);
-    let target = $('.user');
-    users.forEach(function (user) {
-      let html = '<tr><td>';
+    
+
+
+    $(".user").text('');
+      $.each(users,function(index,user)
+      {
+        let html = '<tr><td>';
       html += `<td>${user.id}</td>`;
       html += `<td>${user.name}</td>`;
       html += `<td class='email'>${user.email}</td>`;
-      target.append(html);
-    });
+      html += `<td><button class="deleteButton" data="${index}">Delete</button></td>`;
+      $('.user').append(html);
+       });
+       
+
+
+    console.log(users);
   }
 
   function addUser(data)
@@ -148,8 +153,25 @@ $(document).ready(function(){
     renderUserList();
   }
 
+  $(".user").on("click", ".deleteButton", function() {
+          
+          var indexdata = $( this ).attr( "data" );
+                 users.splice(indexdata);
+                 renderUserList();
+      
+          });
+
+
+
 });
 </script>
- 
+
+
+
+
 </body>
 </html>
+
+
+
+
